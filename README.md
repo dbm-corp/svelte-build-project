@@ -1,38 +1,68 @@
-# create-svelte
+# Blog page build up by svelte
 
-Everything you need to build a Svelte project, powered by [`create-svelte`](https://github.com/sveltejs/kit/tree/master/packages/create-svelte).
+## Overview
+- Website blog show to travel, fashion blog, etc use Sveltejs and vite to code and build
 
-## Creating a project
-
-If you're seeing this, you've probably already done this step. Congrats!
-
-```bash
-# create a new project in the current directory
-npm create svelte@latest
-
-# create a new project in my-app
-npm create svelte@latest my-app
-```
-
-## Developing
-
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+## Project structor
 
 ```bash
-npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
+src
+   |-- lib
+   |   |-- components (contain page components)
+   |   |-- services (contain module call api function)
+   |   |-- store (contain page global store variable)
+   |   |-- utils (contain common function)
+   |   |-- api.ts (axios config)
+   |-- routes (Route page follow file structor)
+   |   |-- about (page about)
+   |   |   |-- +page.svelte (page ui code)
+   |   |   |-- +page.ts (page client side render api)
+   |   |-- contact (page contact)
+   |   |   |-- +page.svelte
+   |   |   |-- +page.ts
+   |   |-- fashion (page fashion)
+   |   |   |-- +page.svelte
+   |   |   |-- +page.ts
+   |   |-- travel (page travel)
+   |   |   |-- +page.svelte
+   |   |   |-- +page.ts
+   |   |-- +layout.svelte (common layout ui)
+   |   |-- +page.svelte (page / ui)
+   |   |-- +page.ts
+   |-- env.d.ts (config process variable)
+static
+   |-- fonts (website fonts)
+   |-- images (website images)
+package.json (Page package usage)
+.env (global process variable)
+svelte.config.js (svelte config)
+vite.config.ts (vite combine config)
 ```
 
-## Building
+## Project technology
+- Svelte (framework front-end)
+- Axios 
 
-To create a production version of your app:
+## How to use
+
+Run yarn install to install all package use in project
 
 ```bash
-npm run build
+yarn install
+```
+Clone project basic_strapi to folder repo, go in to project and run yarn run develop to run project
+```
+yarn run develop ( in basic_strapi folder)
 ```
 
-You can preview the production build with `npm run preview`.
+To run project in local
 
-> To deploy your app, you may need to install an [adapter](https://kit.svelte.dev/docs/adapters) for your target environment.
+```bash
+yarn dev
+```
+
+To build project
+
+```bash
+yarn build
+```
