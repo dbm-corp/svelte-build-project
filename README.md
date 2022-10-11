@@ -50,7 +50,7 @@ Run yarn install to install all package use in project
 ```bash
 yarn install
 ```
-Clone project basic_strapi to folder repo, go in to project and run yarn run develop to run project
+Clone project basic_strapi (https://github.com/dbm-corp/basic_strapi) to folder repo, go in to project and run yarn run develop to run project
 ```
 yarn run develop ( in basic_strapi folder)
 ```
