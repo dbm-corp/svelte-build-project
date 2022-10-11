@@ -1,5 +1,6 @@
 // import { error } from '@sveltejs/kit'
 import API from '$lib/api'
+import Service from '$lib/services'
 
 // we don't need any JS on this page, though we'll load
 // it in dev so that we get hot module replacement...
@@ -50,9 +51,9 @@ export const load = async () => {
 	}
 
 	const response = await Promise.all([
-		API.get('categories?populate=*', {}),
-		API.get('posts?populate=*', {}),
-		API.get('tags', {})
+		Service.category.getCategories({ populate: '*' }),
+		Service.post.getPosts({ populate: '*' }),
+		Service.tag.getTags({})
 	])
 
 	if (!response[0].data) {

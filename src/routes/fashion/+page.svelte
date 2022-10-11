@@ -2,8 +2,8 @@
 	import Pagination from '$lib/components/commons/pagination/Pagination.svelte'
 	import { onMount } from 'svelte'
 	import { loading } from '$lib/store/index'
-	import API from '$lib/api'
 	import { formatDate } from '$lib/utils/utils'
+	import Service from '$lib/services'
 
 	let postData: Post[]
 	let postPagination: PostPagination
@@ -37,10 +37,11 @@
 
 	const fetchData: Function = async () => {
 		loading.set(true)
-		const response = await API.get(
-			`posts?populate=*&pagination[page]=${currentPage}&filters[categories][slug][$eq]=fashion`,
-			{}
-		)
+		const response = Service.post.getPosts({
+			populate: '*',
+			'pagination[page]': currentPage,
+			'filters[categories][slug][$eq]': 'fashion'
+		})
 		postData = (response?.data || []) as Post[]
 		postPagination = (response?.meta?.pagination || {}) as PostPagination
 		loading.set(false)

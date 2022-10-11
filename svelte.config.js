@@ -6,7 +6,7 @@ import { searchForWorkspaceRoot } from 'vite'
 const json = JSON.parse(await readFile(new URL('./package.json', import.meta.url)))
 
 /** @type {import('@sveltejs/kit').Config} */
-const config = {
+const svelteConfig = {
 	// Consult https://github.com/sveltejs/svelte-preprocess
 	// for more information about preprocessors
 	preprocess: preprocess(),
@@ -64,4 +64,4 @@ const config = {
 	}
 }
 
-export default config
+export default svelteConfig

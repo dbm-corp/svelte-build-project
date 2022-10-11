@@ -1,11 +1,11 @@
 <script lang="ts">
 	import Pagination from '$lib/components/commons/pagination/Pagination.svelte'
-	import API from '$lib/api'
 	import RightSideBar from '$lib/components/commons/right-sidebar/RightSideBar.svelte'
 	import { onMount } from 'svelte'
 	import { loading } from '$lib/store/index'
 	import type { PageData } from './$types'
 	import { formatDate } from '$lib/utils/utils'
+	import Service from '$lib/services'
 
 	export let data: PageData
 	let postData: Post[]
@@ -40,10 +40,11 @@
 
 	const fetchData: Function = async () => {
 		loading.set(true)
-		const response = await API.get(
-			`posts?populate=*&pagination[page]=${currentPage}&filters[categories][slug][$eq]=travel`,
-			{}
-		)
+		const response = Service.post.getPosts({
+			populate: '*',
+			'pagination[page]': currentPage,
+			'filters[categories][slug][$eq]': 'travel'
+		})
 		postData = (response?.data || []) as Post[]
 		postPagination = (response?.meta?.pagination || {}) as PostPagination
 		loading.set(false)

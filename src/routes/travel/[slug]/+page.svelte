@@ -3,9 +3,9 @@
 	import { onMount } from 'svelte'
 	import { loading } from '$lib/store/index'
 	import type { PageData } from './$types'
-	import API from '$lib/api'
 	import { formatDate } from '$lib/utils/utils'
 	import { page } from '$app/stores'
+	import Service from '$lib/services'
 
 	type FormContent = {
 		CommenterInfos: {
@@ -55,17 +55,19 @@
 	})
 
 	const fetchData: Function = async () => {
-		const response = await API.get(`posts/${$page.params.slug}?populate=deep`, {})
+		const response = await Service.post.detailPost($page.params.slug, { populate: 'deep' })
 		detailPost = (response?.data || {}) as DetailPost
 		formContent.post = detailPost.id || null
 	}
 
 	const submitHandler: Function = async () => {
-		await API.post('comments', {
-			data: formContent
-		}).then(() => {
-			fetchData()
-		})
+		Service.comment
+			.postComment({
+				data: formContent
+			})
+			.then(() => {
+				fetchData()
+			})
 	}
 </script>
 
@@ -111,7 +113,7 @@
 								{detailPost?.attributes?.comments?.data?.length || 0} Comments
 							</h3>
 							<ul class="comment-list">
-								{#each detailPost?.attributes?.comments?.data as comment}
+								{#each detailPost?.attributes?.comments?.data || [] as comment}
 									<li class="comment">
 										<div class="vcard bio">
 											<!-- svelte-ignore a11y-img-redundant-alt -->

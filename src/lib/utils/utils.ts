@@ -1,5 +1,5 @@
-import moment from 'moment'
+import dayjs from 'dayjs'
 
 export const formatDate: Function = (date: string, format: string) => {
-	return moment(date).format(format)
+	return dayjs(date).format(format)
 }

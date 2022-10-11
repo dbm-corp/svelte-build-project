@@ -5,7 +5,7 @@
 	import { loading } from '$lib/store/index'
 	import type { PageData } from './$types'
 	import { onMount } from 'svelte'
-	import API from '$lib/api'
+	import Service from '$lib/services'
 
 	export let data: PageData
 	let postData: Post[]
@@ -40,7 +40,11 @@
 
 	const fetchData: Function = async () => {
 		loading.set(true)
-		const response = await API.get(`posts?populate=*&pagination[page]=${currentPage}`, {})
+
+		const response = await Service.post.getPosts({
+			populate: '*',
+			'pagination[page]': currentPage
+		})
 		postData = (response?.data || []) as Post[]
 		postPagination = (response?.meta?.pagination || {}) as PostPagination
 		loading.set(false)
