@@ -1,17 +1,21 @@
 import API from '$lib/api'
 
-export const getCategories: Function = async (query: any) => {
-	const results = await API.get(`categories`, query)
-	return results
+interface categoryQuery {
+	populate?: string
+	'pagination[page]'?: number
+	'filters[categories][slug][$eq]'?: string
 }
 
-export const detailCategory: Function = async (slug: string, query: any) => {
-	const results = await API.get(`categories/${slug}`, query)
-	return results
+class CategoryService {
+	public async getCategories(query: categoryQuery) {
+		const results: any = await API.get(`categories`, query)
+		return results
+	}
+
+	public async detailCategory(slug: string, query: categoryQuery) {
+		const results: any = await API.get(`categories/${slug}`, query)
+		return results
+	}
 }
 
-const categoryService = {
-	getCategories,
-	detailCategory
-}
-export default categoryService
+export const categoryService = new CategoryService()

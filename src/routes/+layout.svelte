@@ -3,6 +3,7 @@
 	import AOS from 'aos'
 	import LeftSideBar from '$lib/components/commons/left-sidebar/LeftSideBar.svelte'
 	import { loading } from '$lib/store/index'
+	import { SvelteToast } from '@zerodevx/svelte-toast'
 	import '../app.scss'
 	import 'aos/dist/aos.css'
 	import 'carbon-components-svelte/css/white.css'
@@ -62,6 +63,7 @@
 		</svg>
 	</div>
 {/if}
+<SvelteToast options={{ reversed: true, intro: { y: 192 } }} />
 <svelte:head>
 	<link
 		href="https://fonts.googleapis.com/css?family=Poppins:300,400,500,600,700"

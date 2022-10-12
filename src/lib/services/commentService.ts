@@ -1,11 +1,22 @@
 import API from '$lib/api'
 
-export const postComment: Function = async (data: any) => {
-	const results = await API.post(`posts`, data)
-	return results
+interface commentPayload {
+	data?: {
+		CommenterInfos?: {
+			Name?: string
+			Email?: string
+		}
+		Website?: string
+		Content?: string
+		post?: any
+	}
 }
 
-const commentService = {
-	postComment
+class CommentService {
+	public async postComment(data: commentPayload) {
+		const results: any = await API.post(`comments`, data)
+		return results
+	}
 }
-export default commentService
+
+export const commentService = new CommentService()

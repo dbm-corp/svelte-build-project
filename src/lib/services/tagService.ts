@@ -1,17 +1,21 @@
 import API from '$lib/api'
 
-export const getTags: Function = async (query: any) => {
-	const results = await API.get(`tags`, query)
-	return results
+interface tagQuery {
+	populate?: string
+	'pagination[page]'?: number
+	'filters[categories][slug][$eq]'?: string
 }
 
-export const detailTag: Function = async (slug: string, query: any) => {
-	const results = await API.get(`tags/${slug}`, query)
-	return results
+class TagService {
+	public async getTags(query: tagQuery) {
+		const results: any = await API.get(`tags`, query)
+		return results
+	}
+
+	public async detailTag(slug: string, query: tagQuery) {
+		const results: any = await API.get(`tags/${slug}`, query)
+		return results
+	}
 }
 
-const tagService = {
-	getTags,
-	detailTag
-}
-export default tagService
+export const tagService = new TagService()

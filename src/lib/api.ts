@@ -1,5 +1,6 @@
 // Api.js
 import axios from 'axios'
+import { toast } from '@zerodevx/svelte-toast'
 
 // Create a instance of axios to use the same base url.
 const axiosAPI = axios.create({
@@ -23,6 +24,13 @@ const apiRequest: Function = (method: string, url: string, request: string, quer
 			return Promise.resolve(res.data)
 		})
 		.catch((err: any) => {
+			toast.push(`${err?.response?.data?.error?.status} ${err?.response?.data?.error?.message}`, {
+				theme: {
+					'--toastColor': 'mintcream',
+					'--toastBackground': '#fa2020',
+					'--toastBarBackground': '#2F855A'
+				}
+			})
 			return Promise.reject(err)
 		})
 }

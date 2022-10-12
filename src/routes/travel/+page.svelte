@@ -40,7 +40,7 @@
 
 	const fetchData: Function = async () => {
 		loading.set(true)
-		const response = Service.post.getPosts({
+		const response = await Service.post.getPosts({
 			populate: '*',
 			'pagination[page]': currentPage,
 			'filters[categories][slug][$eq]': 'travel'
