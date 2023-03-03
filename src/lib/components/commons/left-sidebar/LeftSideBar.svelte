@@ -102,11 +102,12 @@
 				{currentYear}
 				All rights reserved | This template is made with
 				<i class="icon-heart" aria-hidden="true" />
-				by <a href="https://colorlib.com/" target="_blank">Colorlib</a>
+				by <a href="https://colorlib.com/" target="_blank" rel="noreferrer">Colorlib</a>
 			</p>
 		</div>
 	</aside>
 	{#if mobileOpenMenu && resizeX <= 992}
+		<!-- svelte-ignore a11y-click-events-have-key-events -->
 		<div class="layout-blur" in:fade out:fade on:click={() => closeMobileMenu()} />
 	{/if}
 </div>

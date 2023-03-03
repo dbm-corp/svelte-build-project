@@ -32,7 +32,10 @@
 		margin-right: 5px;
 	}
 
-	:global(.bx--pagination-nav__page.bx--pagination-nav__page, .bx--btn.bx--btn--icon-only.bx--tooltip__trigger) {
+	:global(
+			.bx--pagination-nav__page.bx--pagination-nav__page,
+			.bx--btn.bx--btn--icon-only.bx--tooltip__trigger
+		) {
 		min-width: 40px;
 		height: 40px;
 		display: flex;
